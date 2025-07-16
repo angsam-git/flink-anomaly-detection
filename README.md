@@ -1,4 +1,4 @@
-# AI Anomaly Detection - Kafka, Flink & Pytorch
+# AI Anomaly Detection - Kafka, Flink & PyTorch
 
 This is the real-time analytics pipeline including the Flink Java application which consumes logs from Kafka. It inspects and flags abnormal patterns in API usage with a PyTorch model using autoencoders and writes to a sink topic. 
 
