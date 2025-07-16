@@ -1,0 +1,4 @@
+kafka:
+  bootstrap-servers: kafka:9092
+  topic: api-logs
+  group-id: flink-log-consumer
