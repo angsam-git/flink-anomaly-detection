@@ -32,6 +32,16 @@ while ! docker-compose exec kafka kafka-topics.sh --bootstrap-server kafka:9092 
     sleep 2
 done
 
+# Create topic 'sink-topic'
+echo "Creating topic 'sink-topic'..."
+docker-compose exec kafka kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic sink-topic --partitions 1 --replication-factor 1 >/dev/null 2>&1
+
+# Wait for topic leader assignment
+while ! docker-compose exec kafka kafka-topics.sh --bootstrap-server kafka:9092 --describe --topic sink-topic 2>/dev/null | grep -q "Leader:"; do
+    echo "Waiting for topic leader assignment..."
+    sleep 2
+done
+
 # Submit Flink Job
 echo "Submitting Flink job..."
 FLINK_OUTPUT=$(docker-compose exec jobmanager /opt/flink/bin/flink run -d --jobmanager jobmanager:8081 /flink/job/flink-anomaly-detector-1.0.0.jar 2>/dev/null)

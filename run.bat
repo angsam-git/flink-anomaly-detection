@@ -37,6 +37,19 @@ if errorlevel 1 (
     goto waitleader
 )
 
+REM Create topic 'sink-topic'
+echo Creating topic 'sink-topic'...
+docker-compose exec kafka kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic sink-topic --partitions 1 --replication-factor 1 >nul 2>&1
+
+REM Wait for topic leader assignment
+:waitleader
+docker-compose exec kafka kafka-topics.sh --bootstrap-server kafka:9092 --describe --topic sink-topic | findstr "Leader:" >nul 2>&1
+if errorlevel 1 (
+    echo Waiting for topic leader assignment...
+    timeout /t 2 >nul
+    goto waitleader
+)
+
 REM Submit Flink job
 echo Submitting Flink job...
 for /f "tokens=*" %%i in ('docker-compose exec jobmanager /opt/flink/bin/flink run -d --jobmanager jobmanager:8081 /flink/job/flink-anomaly-detector-1.0.0.jar') do (
