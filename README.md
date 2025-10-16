@@ -19,7 +19,7 @@ PyTorch model can be found at https://github.com/angsam-git/pytorch-anomaly-serv
 - Creates Kafka topics for streaming API logs
 - Runs a Flink job to consume and preprocess API request logs
 - Uses a PyTorch model using autoencoders to detect anomalies in real time
-- Sends anomaly alerts or writes flagged events to a separate Kafka topic
+- Writes events and detected anomalies to a sink Kafka topic
 - Fully containerized
 
 ## Build & Run
