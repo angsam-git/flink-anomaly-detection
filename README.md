@@ -11,6 +11,7 @@ This is the real-time analytics pipeline including the Flink Java application wh
 - Python 3.8+
 
 Monitored Spring Boot app can be found at https://github.com/angsam-git/ai-anomaly-monitored-api
+
 PyTorch model can be found at https://github.com/angsam-git/pytorch-anomaly-service
 
 ## Features
