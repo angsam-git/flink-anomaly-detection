@@ -61,6 +61,14 @@ services:
     networks:
       - shared-kafka-net
 
+  model:
+    build: ../pytorch-anomaly-service
+    container_name: anomaly-model
+    ports:
+      - "8000:8000"
+    networks:
+      - shared-kafka-net
+
 volumes:
   kafka_data:
   

@@ -20,7 +20,7 @@ This is the real-time analytics pipeline including the Flink Java application wh
 
 ## Build & Run
 
-Bat and shell scripts are provided for quick building and running. These scripts perform the building of the artifact for the job as well as the setup for Kafka and Flink containers/
+Bat and shell scripts are provided for quick building and running. These scripts perform the building of the artifact for the job as well as the setup for Kafka and Flink containers.
 
 ### Build and Run on Windows
 

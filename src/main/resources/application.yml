@@ -1,4 +1,7 @@
 kafka:
   bootstrap-servers: kafka:9092
   topic: api-logs
+  sink-topic: sink-topic
   group-id: flink-log-consumer
+model:
+  url: "http://model:8000/predict"
